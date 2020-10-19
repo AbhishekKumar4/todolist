@@ -21,7 +21,9 @@ function App() {
   }
 
   const deleteItem = item => {
-    //items.
+    let newValues = items.filter(savedItem => savedItem !== item)
+    setItems(newValues)
+    localStorage.setItem('list', JSON.stringify(newValues));
   }
 
   return (
@@ -40,7 +42,7 @@ function App() {
         <ul className='list-group'>
           {items && items.map(item => {
             return <li className='list-group-item d-flex justify-content-between'>{item}
-              <button class="btn"><i class="fa fa-trash right"></i></button>
+              <button className="btn" onClick={() => deleteItem(item)}><i className="fa fa-trash right"></i></button>
             </li>
           })}
         </ul>
